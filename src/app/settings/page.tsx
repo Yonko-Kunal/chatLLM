@@ -43,7 +43,7 @@ const SettingsPage = () => {
                 <Info className='w-4 h-4' />
               </TooltipTrigger>
               <TooltipContent>
-                <p>Your API key is stored securely in your browser's local storage and is never sent to any server.</p>
+                <p>Your API key is stored securely in your browser&apos;s local storage and is never sent to any server.</p>
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>

@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Textarea } from './ui/textarea';
+import Image from 'next/image';
 
 export function Chat() {
   const [message, setMessage] = useState('');
@@ -54,7 +55,7 @@ export function Chat() {
           />
           {image && (
             <div className="mt-4">
-              <img src={image} alt="Selected" className="max-w-full h-auto" />
+              <Image src={image} alt="Selected" width={400} height={300} className="max-w-full h-auto" />
             </div>
           )}
           <button

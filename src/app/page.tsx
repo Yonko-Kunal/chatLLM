@@ -7,6 +7,7 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { tomorrow } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import 'github-markdown-css/github-markdown.css';
 import { Mic, Plus, ImagePlus } from 'lucide-react';
+import Image from 'next/image';
 import {
   Popover,
   PopoverContent,
@@ -86,8 +87,8 @@ const Home = () => {
     fileInputRef.current?.click()
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (e?: React.FormEvent) => {
+    e?.preventDefault();
     if (inputValue.trim() === '' && !image) return;
 
     setIsLoading(true);
@@ -159,7 +160,7 @@ const Home = () => {
             <div key={index} className="my-4 sm:my-8">
               <div className="flex justify-end">
                 <div className="my-3 sm:my-6">
-                  {chat.image && <img src={chat.image} alt="user upload" className="w-48 h-48 object-cover rounded-lg mb-2" />}
+                  {chat.image && <Image src={chat.image} alt="user upload" width={192} height={192} className="w-48 h-48 object-cover rounded-lg mb-2" />}
                   {chat.user}
                 </div>
               </div>
@@ -167,11 +168,11 @@ const Home = () => {
                 <div className="markdown-body bg-transparent my-3 sm:my-6 max-w-full">
                   <ReactMarkdown
                     components={{
-                      code({ node, className, children, ...props }) {
+                      code({ className, children, ...props }) {
                         const match = /language-(\w+)/.exec(className || '');
                         return match ? (
                           <SyntaxHighlighter
-                            style={tomorrow as any}
+                            style={tomorrow as Record<string, React.CSSProperties>}
                             language={match[1]}
                             PreTag="div"
                           >
@@ -199,7 +200,7 @@ const Home = () => {
       <div className={`w-full max-w-4xl mx-auto p-4 sticky bottom-0 bg-[#0A0A0A]`}>
         <form onSubmit={handleSubmit} className="relative">
           <div className="relative flex flex-col w-full bg-zinc-800 rounded-3xl border border-zinc-700 shadow-lg">
-            {image && <img src={image} alt="selected" className="w-48 h-48 object-cover rounded-lg m-4" />}
+            {image && <Image src={image} alt="selected" width={192} height={192} className="w-48 h-48 object-cover rounded-lg m-4" />}
             <Textarea
               placeholder="Type your message here."
               className="w-full bg-transparent border-none text-white resize-none py-4 pl-4 pr-24 focus:ring-0"
@@ -209,7 +210,7 @@ const Home = () => {
               onKeyDown={(e: KeyboardEvent<HTMLTextAreaElement>) => {
                 if (e.key === 'Enter' && !e.shiftKey) {
                   e.preventDefault();
-                  handleSubmit(e as any);
+                  handleSubmit();
                 }
               }}
               onImageSelect={handleImageSelect}
