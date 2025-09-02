@@ -2,7 +2,7 @@
 
 A modern, responsive chat application built with Next.js 15 and Google's Gemini AI, featuring image upload capabilities, markdown rendering, and a beautiful dark theme interface.
 
-![Chat LLM Preview](public/image.png)
+
 
 ## ✨ Features
 
