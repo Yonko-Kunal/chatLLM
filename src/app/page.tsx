@@ -25,6 +25,23 @@ const SkeletonLoader = () => (
   </div>
 );
 
+// Minimal types for Web Speech API to avoid any
+type SpeechRecognitionAlternativeLike = { transcript: string };
+type SpeechRecognitionResultLike = { 0: SpeechRecognitionAlternativeLike };
+type SpeechRecognitionEventLike = { results: ArrayLike<SpeechRecognitionResultLike> };
+type SpeechRecognitionLike = {
+  interimResults: boolean;
+  continuous: boolean;
+  lang: string;
+  start: () => void;
+  stop: () => void;
+  onstart: (() => void) | null;
+  onend: (() => void) | null;
+  onerror: (() => void) | null;
+  onresult: ((event: SpeechRecognitionEventLike) => void) | null;
+};
+type SpeechRecognitionConstructor = new () => SpeechRecognitionLike;
+
 const Home = () => {
   const [submitted, setSubmitted] = useState(false);
   const [inputValue, setInputValue] = useState('');
@@ -38,11 +55,15 @@ const Home = () => {
   const [textareaHeight, setTextareaHeight] = useState('10rem');
   const [isRecording, setIsRecording] = useState(false);
   const [isSpeechSupported, setIsSpeechSupported] = useState(true);
-  const recognitionRef = useRef<any>(null);
+  const recognitionRef = useRef<SpeechRecognitionLike | null>(null);
 
-  const getSpeechRecognitionCtor = () => {
+  const getSpeechRecognitionCtor = (): SpeechRecognitionConstructor | null => {
     if (typeof window === 'undefined') return null;
-    return (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition || null;
+    const w = window as unknown as {
+      SpeechRecognition?: SpeechRecognitionConstructor;
+      webkitSpeechRecognition?: SpeechRecognitionConstructor;
+    };
+    return w.SpeechRecognition || w.webkitSpeechRecognition || null;
   };
 
   useEffect(() => {
@@ -152,7 +173,7 @@ const Home = () => {
     const recognition = new SpeechRecognition();
     recognition.interimResults = true;
     recognition.continuous = true;
-    recognition.lang = (navigator as any).language || 'en-US';
+    recognition.lang = (navigator.language || 'en-US');
 
     recognition.onstart = () => {
       setIsRecording(true);
@@ -163,10 +184,10 @@ const Home = () => {
     recognition.onerror = () => {
       setIsRecording(false);
     };
-    recognition.onresult = (event: any) => {
+    recognition.onresult = (event: SpeechRecognitionEventLike) => {
       const transcript = Array.from(event.results)
-        .map((result: any) => result[0])
-        .map((result) => result.transcript)
+        .map((result: SpeechRecognitionResultLike) => result[0])
+        .map((alt: SpeechRecognitionAlternativeLike) => alt.transcript)
         .join('');
       setInputValue(transcript);
     };
@@ -180,7 +201,7 @@ const Home = () => {
   }, []);
 
   const handleVoiceRecording = () => {
-    const recognition: any = recognitionRef.current;
+    const recognition = recognitionRef.current;
     if (!recognition) {
       alert("Your browser does not support speech recognition.");
       return;
