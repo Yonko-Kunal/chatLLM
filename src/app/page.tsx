@@ -6,7 +6,7 @@ import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { tomorrow } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import 'github-markdown-css/github-markdown.css';
-import { Mic, Plus, ImagePlus } from 'lucide-react';
+import { Mic, Plus, ImagePlus, Send } from 'lucide-react';
 import Image from 'next/image';
 import {
   Popover,
@@ -36,6 +36,14 @@ const Home = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [textareaHeight, setTextareaHeight] = useState('10rem');
+  const [isRecording, setIsRecording] = useState(false);
+  const [isSpeechSupported, setIsSpeechSupported] = useState(true);
+  const recognitionRef = useRef<any>(null);
+
+  const getSpeechRecognitionCtor = () => {
+    if (typeof window === 'undefined') return null;
+    return (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition || null;
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -132,6 +140,57 @@ const Home = () => {
       chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
     }
   }, [chatHistory, isBotReplying]);
+
+  useEffect(() => {
+    const SpeechRecognition = getSpeechRecognitionCtor();
+    if (!SpeechRecognition) {
+      setIsSpeechSupported(false);
+      return;
+    }
+    setIsSpeechSupported(true);
+
+    const recognition = new SpeechRecognition();
+    recognition.interimResults = true;
+    recognition.continuous = true;
+    recognition.lang = (navigator as any).language || 'en-US';
+
+    recognition.onstart = () => {
+      setIsRecording(true);
+    };
+    recognition.onend = () => {
+      setIsRecording(false);
+    };
+    recognition.onerror = () => {
+      setIsRecording(false);
+    };
+    recognition.onresult = (event: any) => {
+      const transcript = Array.from(event.results)
+        .map((result: any) => result[0])
+        .map((result) => result.transcript)
+        .join('');
+      setInputValue(transcript);
+    };
+
+    recognitionRef.current = recognition;
+
+    return () => {
+      recognition.stop?.();
+      recognitionRef.current = null;
+    };
+  }, []);
+
+  const handleVoiceRecording = () => {
+    const recognition: any = recognitionRef.current;
+    if (!recognition) {
+      alert("Your browser does not support speech recognition.");
+      return;
+    }
+    if (isRecording) {
+      recognition.stop();
+    } else {
+      recognition.start();
+    }
+  };
 
   return (
     <div
@@ -236,11 +295,20 @@ const Home = () => {
                 </PopoverContent>
               </Popover>
               <Button
+                type="button"
+                className="bg-transparent hover:bg-zinc-700 p-2 rounded-full"
+                onClick={handleVoiceRecording}
+                disabled={!isSpeechSupported}
+                title={isSpeechSupported ? "Start/stop voice input" : "Speech recognition not supported in this browser"}
+              >
+                {isRecording ? <div className="loader" /> : <Mic className="text-zinc-400" />}
+              </Button>
+              <Button
                 type="submit"
                 className="bg-transparent hover:bg-zinc-700 p-2 rounded-full"
                 disabled={isLoading}
               >
-                {isLoading ? <div className="loader" /> : <Mic className="text-zinc-400" />}
+                {isLoading ? <div className="loader" /> : <Send className="text-zinc-400" />}
               </Button>
             </div>
           </div>
