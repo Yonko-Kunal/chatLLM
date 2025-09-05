@@ -14,10 +14,18 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import { Skeleton } from "@/components/ui/skeleton"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const SkeletonLoader = () => (
   <div className="flex items-center space-x-4 my-8">
-    <Skeleton className="h-12 w-12 rounded-full" />
+    {/* <Skeleton className="h-12 w-12 rounded-full" /> */}
     <div className="space-y-2">
       <Skeleton className="h-4 w-[250px]" />
       <Skeleton className="h-4 w-[200px]" />
@@ -56,6 +64,7 @@ const Home = () => {
   const [isRecording, setIsRecording] = useState(false);
   const [isSpeechSupported, setIsSpeechSupported] = useState(true);
   const recognitionRef = useRef<SpeechRecognitionLike | null>(null);
+  const [selectedModel, setSelectedModel] = useState("Gemini 2.5 Flash");
 
   const getSpeechRecognitionCtor = (): SpeechRecognitionConstructor | null => {
     if (typeof window === 'undefined') return null;
@@ -137,7 +146,7 @@ const Home = () => {
           'Content-Type': 'application/json',
           'x-api-key': apiKey || '',
         },
-        body: JSON.stringify({ message, image }),
+        body: JSON.stringify({ message, image, selectedModel }),
       });
 
       if (res.ok) {
@@ -219,18 +228,35 @@ const Home = () => {
       onDragEnter={handleDragEnter}
       onDragOver={(e) => e.preventDefault()}
     >
+      <div className="absolute top-4 right-4">
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline">{selectedModel}</Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuLabel>Select Model</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem onSelect={() => setSelectedModel("Gemini 2.5 Flash")}>
+              Gemini 2.5 Flash
+            </DropdownMenuItem>
+            <DropdownMenuItem onSelect={() => setSelectedModel("Gemini 2.5 Pro")}>
+              Gemini 2.5 Pro
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
       {isDragging && (
         <div
           className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-50"
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}
         >
-          <div className="text-white text-2xl">Drop image to upload</div>
+          <div className="text-white text-2xl">Drop it like its hot</div>
         </div>
       )}
       {!submitted && (
         <div className="text-center">
-          <h1 className='text-2xl font-bold mb-12'>How can i help you ?</h1>
+          <h1 className='text-2xl font-bold mb-12'>How can I help you ?</h1>
         </div>
       )}
 
@@ -256,7 +282,7 @@ const Home = () => {
                             language={match[1]}
                             PreTag="div"
                           >
-                            {String(children).replace(/\n$/, '')}
+                            {String(children).replace(/\\n$/, '')}
                           </SyntaxHighlighter>
                         ) : (
                           <code className={className} {...props}>
@@ -279,10 +305,10 @@ const Home = () => {
 
       <div className={`w-full max-w-4xl mx-auto p-4 sticky bottom-0 bg-[#0A0A0A]`}>
         <form onSubmit={handleSubmit} className="relative">
-          <div className="relative flex flex-col w-full bg-zinc-800 rounded-3xl border border-zinc-700 shadow-lg">
+          <div className="relative flex flex-col w-full bg-zinc-800 rounded-3xl border border-zinc-700 shadow-lg rainbow-border">
             {image && <Image src={image} alt="selected" width={192} height={192} className="w-48 h-48 object-cover rounded-lg m-4" />}
             <Textarea
-              placeholder="Type your message here."
+              placeholder="Type your query here."
               className="w-full bg-transparent border-none text-white resize-none py-4 pl-4 pr-24 focus:ring-0"
               style={{ height: textareaHeight }}
               value={inputValue}

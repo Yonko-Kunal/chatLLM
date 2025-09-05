@@ -50,7 +50,7 @@ export function Chat() {
           <Textarea
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            placeholder="Type your message here..."
+            placeholder="Type your query here..."
             onImageSelect={handleImageSelect}
           />
           {image && (

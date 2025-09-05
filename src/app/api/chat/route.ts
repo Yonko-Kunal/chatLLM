@@ -1,11 +1,11 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
 export async function POST(req: Request) {
-  const { message, image } = await req.json();
+  const { message, image, selectedModel } = await req.json();
   const apiKey = req.headers.get('x-api-key');
 
   const genAI = new GoogleGenerativeAI(apiKey || process.env.GOOGLE_API_KEY!);
-  const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
+  const model = genAI.getGenerativeModel({ model: selectedModel === "Gemini 2.5 Pro" ? 'gemini-2.5-pro' : 'gemini-2.5-flash' });
 
   try {
     let content;
